@@ -8,8 +8,12 @@ class Subject {
     return this.observers.push(observer)
   }
 
-  remove(observer: Observer) {
-    return this.observers.filter((item) => observer !== item)
+  getIndex(observer: Observer) {
+    return this.observers.findIndex((handler) => handler === observer)
+  }
+
+  removeAt(id: number) {
+    return this.observers.splice(id, 1)
   }
 
   notify(context: unknown) {
@@ -25,15 +29,4 @@ class Observer {
   }
 }
 
-const TestSubject = new Subject()
-const observers = [...Array(4).keys()].map(() => {
-  const observer = new Observer()
-  TestSubject.add(observer)
-  return observer
-})
-const notification = {
-    key: true,
-  }
-TestSubject.notify(notification)
-
-console.log(observers.filter(observer => observer.value === notification))
+export { Observer, Subject }
