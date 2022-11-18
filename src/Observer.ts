@@ -1,19 +1,15 @@
 class Subject {
-  observers: Observer[]
+  observers: Set<Observer>
   constructor() {
-    this.observers = []
+    this.observers = new Set()
   }
 
   add(observer: Observer) {
-    return this.observers.push(observer)
+    return this.observers.add(observer)
   }
 
-  getIndex(observer: Observer) {
-    return this.observers.findIndex((handler) => handler === observer)
-  }
-
-  removeAt(id: number) {
-    return this.observers.splice(id, 1)
+  remove(observer) {
+    return this.observers.delete(observer)
   }
 
   notify(context: unknown) {

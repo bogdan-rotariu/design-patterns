@@ -5,15 +5,14 @@ describe("Observer", () => {
     const subject = new Subject()
     const observer = new Observer()
     subject.add(observer)
-    expect(subject.observers.length).toBe(1)
+    expect(subject.observers.size).toBe(1)
   })
 
   it("should remove Observer from Subject list of handlers", () => {
     const subject = new Subject()
     const observer = new Observer()
-    const id = subject.getIndex(observer)
-    subject.removeAt(id)
-    expect(subject.observers.length).toBe(0)
+    subject.remove(observer)
+    expect(subject.observers.size).toBe(0)
   })
 
   it("should notify all observers of change", () => {
